@@ -101,8 +101,12 @@ class AutoEncoder:
             self.d = list(reversed(self.d))
             
             self.sess = tf.Session()
-            init = tf.global_variables_initializer()
-            self.sess.run(init)
+            self.init_node = tf.global_variables_initializer()
+            #
+            self.re_init()
+
+    def re_init(self):
+        self.sess.run(self.init_node)
         
         
     def fit(self,X,print_progress=False):
